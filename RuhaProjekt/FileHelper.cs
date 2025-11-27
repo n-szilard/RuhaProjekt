@@ -68,7 +68,7 @@ namespace RuhaProjekt
                     switch (line[0])
                     {
                         case "Accessory":
-                            list.Add(new Clothing(line[1]));
+                            /*list.Add(new Clothing(line[1]));*/
                             break;
                         case "TopWear":
                             break;

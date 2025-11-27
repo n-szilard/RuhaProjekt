@@ -101,20 +101,13 @@ namespace RuhaProjekt
 
         private void AddTopWear()
         {
-            Console.Write("Márka: ");
-            string brand = Console.ReadLine();
-            Console.Write("Méret: ");
-            string size = Console.ReadLine();
-            Console.Write("Szín: ");
-            string color = Console.ReadLine();
-            Console.Write("Ár: ");
-            int price = int.Parse(Console.ReadLine());
-            Console.Write("Típus: ");
-            string type = Console.ReadLine();
-            Console.Write("Fit: ");
-            string fit = Console.ReadLine();
-            Console.Write("Nyakvonal: ");
-            string neckline = Console.ReadLine();
+            string brand = PromptNonEmpty("Márka: ");
+            string size = PromptNonEmpty("Méret: ");
+            string color = PromptNonEmpty("Szín: ");
+            int price = PromptInt("Ár: ");
+            string type = PromptNonEmpty("Típus: ");
+            string fit = PromptNonEmpty("Fit: ");
+            string neckline = PromptNonEmpty("Nyakvonal: ");
 
             ruhak.Add(new TopWear(brand, size, color, price, type, fit, neckline));
             Console.WriteLine("Felsőruházat hozzáadva!");
@@ -122,20 +115,13 @@ namespace RuhaProjekt
 
         private void AddBottomWear()
         {
-            Console.Write("Márka: ");
-            string brand = Console.ReadLine();
-            Console.Write("Méret: ");
-            string size = Console.ReadLine();
-            Console.Write("Szín: ");
-            string color = Console.ReadLine();
-            Console.Write("Ár: ");
-            int price = int.Parse(Console.ReadLine());
-            Console.Write("Anyag: ");
-            string material = Console.ReadLine();
-            Console.Write("Hossz (cm): ");
-            int length = int.Parse(Console.ReadLine());
-            Console.Write("Típus: ");
-            string type = Console.ReadLine();
+            string brand = PromptNonEmpty("Márka: ");
+            string size = PromptNonEmpty("Méret: ");
+            string color = PromptNonEmpty("Szín: ");
+            int price = PromptInt("Ár: ");
+            string material = PromptNonEmpty("Anyag: ");
+            int length = PromptInt("Hossz (cm): ");
+            string type = PromptNonEmpty("Típus: ");
 
             ruhak.Add(new BottomWear(brand, size, color, price, type, material, length));
             Console.WriteLine("Alsóruházat hozzáadva!");
@@ -143,20 +129,13 @@ namespace RuhaProjekt
 
         private void AddAccessory()
         {
-            Console.Write("Márka: ");
-            string brand = Console.ReadLine();
-            Console.Write("Méret: ");
-            string size = Console.ReadLine();
-            Console.Write("Szín: ");
-            string color = Console.ReadLine();
-            Console.Write("Ár: ");
-            int price = int.Parse(Console.ReadLine());
-            Console.Write("Típus: ");
-            string type = Console.ReadLine();
-            Console.Write("Funkció: ");
-            string func = Console.ReadLine();
-            Console.Write("Súly (g): ");
-            int weight = int.Parse(Console.ReadLine());
+            string brand = PromptNonEmpty("Márka: ");
+            string size = PromptNonEmpty("Méret: ");
+            string color = PromptNonEmpty("Szín: ");
+            int price = PromptInt("Ár: ");
+            string type = PromptNonEmpty("Típus: ");
+            string func = PromptNonEmpty("Funkció: ");
+            int weight = PromptInt("Súly (g): ");
 
             ruhak.Add(new Accessory(brand, size, color, price, type, func, weight));
             Console.WriteLine("Kiegészítő hozzáadva!");
@@ -175,6 +154,38 @@ namespace RuhaProjekt
             {
                 ruha.DisplayInfo();
             }
+        }
+
+        private string PromptNonEmpty(string message)
+        {
+            string input;
+            do
+            {
+                Console.Write(message);
+                input = Console.ReadLine()?.Trim();
+                if (string.IsNullOrEmpty(input))
+                {
+                    Console.WriteLine("Ez a mező nem lehet üres. Kérlek, adj meg értéket!");
+                }
+            } while (string.IsNullOrEmpty(input));
+            return input;
+        }
+
+        private int PromptInt(string message)
+        {
+            int result;
+            string input;
+            do
+            {
+                Console.Write(message);
+                input = Console.ReadLine()?.Trim();
+                if (!int.TryParse(input, out result))
+                {
+                    Console.WriteLine("Érvénytelen szám! Kérlek, adj meg egy egész számot.");
+                }
+            }
+            while (!int.TryParse(input, out result));
+            return result;
         }
 
     }

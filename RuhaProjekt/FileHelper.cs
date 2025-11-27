@@ -21,7 +21,7 @@ namespace RuhaProjekt
 
                 foreach (Clothing clothing in clothes)
                 {
-                    string line = $"{clothing.GetType().Name};{clothing.Brand};{clothing.Size};{clothing.Color}";
+                    string line = $"{clothing.GetType().Name};{clothing.Brand};{clothing.Size};{clothing.Color};{clothing.Price}";
 
                     if (clothing is Accessory accessory)
                     {
@@ -39,6 +39,7 @@ namespace RuhaProjekt
                 }
 
                 writer.Close();
+                Console.WriteLine("Sikeres kiírás!");
                 return true;
             }
             catch (Exception e)
@@ -74,11 +75,14 @@ namespace RuhaProjekt
                             list.Add(new TopWear(line[1], line[2], line[3], Convert.ToInt32(line[4]), line[5], line[6], line[7]));
                             break;
                         case "BottomWear":
-                            list.Add(new BottomWear(line[1], line[2], line[3], Convert.ToInt32(line[4]), line[5], Convert.ToInt32(line[6]), line[7]));
+                            list.Add(new BottomWear(line[1], line[2], line[3], Convert.ToInt32(line[4]), line[5], line[6], Convert.ToInt32(line[7])));
                             break;
                     }
 
                 }
+
+                reader.Close();
+                Console.WriteLine("Sikeres beolvasás!");
 
             }
             catch (Exception e)

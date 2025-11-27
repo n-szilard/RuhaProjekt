@@ -12,7 +12,8 @@ namespace RuhaProjekt
         public string Type { get; set; }
         public string Material { get; set; }
         public int Length { get; set; }
-        public BottomWear(string brand, string size, string color, int price, string material, int length, string type) : base(brand, size, color, price)
+
+        public BottomWear(string brand, string size, string color, int price, string type, string material, int length) : base(brand, size, color, price)
         {
             Type = type;
             Material = material;

@@ -25,6 +25,7 @@ namespace RuhaProjekt
                 Console.WriteLine("2. Új alsóruházat hozzáadása");
                 Console.WriteLine("3. Új kiegészítő hozzáadása");
                 Console.WriteLine("4. Összes ruha listázása");
+                Console.WriteLine("5. Ruhák törlése");
                 Console.WriteLine("0. Kilépés");
                 Console.Write("Választás: ");
 
@@ -52,6 +53,9 @@ namespace RuhaProjekt
                     case 4:
                         ListClothes();
                         break;
+                    case 5:
+                        DeleteClothes();
+                        break;
                     case 0:
                         FileHelper.Write("ruhak.txt", ruhak, "");
                         Console.WriteLine("Kilépés a menüből.");
@@ -62,6 +66,37 @@ namespace RuhaProjekt
                 }
 
             } while (valasztas != 0);
+        }
+
+        private void DeleteClothes()
+        {
+            for (int i = 0; i < ruhak.Count; i++)
+            {
+                Console.Write($"{i + 1}. ");
+                ruhak[i].DisplayInfo();
+
+            }
+
+            int valasztas;
+            do
+            {
+                Console.Write("Válaszd ki a törölni kívánt ruha sorszámát (0 - Vissza): ");
+                bool ervenyes = int.TryParse(Console.ReadLine(), out valasztas);
+
+                if (!ervenyes)
+                {
+                    Console.WriteLine("Érvénytelen választás");
+                    valasztas = -1;
+                    continue;
+                }
+
+                if (valasztas != 0)
+                {
+                    ruhak.RemoveAt(valasztas - 1);
+                }
+            }
+            while (valasztas != 0);
+
         }
 
         private void AddTopWear()

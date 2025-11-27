@@ -43,7 +43,7 @@ namespace RuhaProjekt
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"Sikertelen kiírás! Error message: {e.Message}");
                 return false;
             }
 
@@ -51,10 +51,10 @@ namespace RuhaProjekt
 
         public static List<Clothing> Read(string fileName, bool header)
         {
+            List<Clothing> list = new List<Clothing>();
             try
             {
                 StreamReader reader = new StreamReader(fileName);
-                List<Clothing> list = new List<Clothing>();
 
                 if (header)
                 {
@@ -68,22 +68,25 @@ namespace RuhaProjekt
                     switch (line[0])
                     {
                         case "Accessory":
-                            /*list.Add(new Clothing(line[1]));*/
+                            list.Add(new Accessory(line[1], line[2], line[3], Convert.ToInt32(line[4]), line[5], line[6], Convert.ToInt32(line[7])));
                             break;
                         case "TopWear":
+                            list.Add(new TopWear(line[1], line[2], line[3], Convert.ToInt32(line[4]), line[5], line[6], line[7]));
                             break;
                         case "BottomWear":
+                            list.Add(new BottomWear(line[1], line[2], line[3], Convert.ToInt32(line[4]), line[5], Convert.ToInt32(line[6]), line[7]));
                             break;
                     }
-
 
                 }
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"Sikertelen beolvasás! Error message: {e.Message}");
             }
+            
+            return list;
         }
     }
 }

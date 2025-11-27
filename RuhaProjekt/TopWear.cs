@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RuhaProjekt
 {
-    abstract class TopWear : Clothing
+    public class TopWear : Clothing
     {
 
 
         public string Type { get; set; }
         public string Fit { get; set; }
         public string Neckline { get; set; }
-        protected TopWear(string brand, string size, string color, int price, string type, string fit, string neckline) : base(brand, size, color, price)
+        public TopWear(string brand, string size, string color, int price, string type, string fit, string neckline) : base(brand, size, color, price)
         {
             Type = type;
             Fit = fit;

@@ -90,9 +90,10 @@ namespace RuhaProjekt
                     continue;
                 }
 
-                if (valasztas != 0)
+                if (valasztas != 0 && valasztas >= 1 && (valasztas-1) < ruhak.Count)
                 {
                     ruhak.RemoveAt(valasztas - 1);
+                    Console.WriteLine($"{valasztas}. ruha törölve!");
                 }
             }
             while (valasztas != 0);
@@ -183,8 +184,12 @@ namespace RuhaProjekt
                 {
                     Console.WriteLine("Érvénytelen szám! Kérlek, adj meg egy egész számot.");
                 }
+                else if (result < 0)
+                {
+                    Console.WriteLine("A szám nem lehet negatív! Adj meg egy 0 vagy nagyobb értéket.");
+                }
             }
-            while (!int.TryParse(input, out result));
+            while (!int.TryParse(input, out result) || result < 0);
             return result;
         }
 
